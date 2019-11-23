@@ -8,4 +8,4 @@ def home(request):
 
 
 def about(request):
-    return render(request, 'main/about.html', {'title': 'About'})
+    return render(request, 'main/forgot3.html')
