@@ -22,3 +22,13 @@ class RegisterForm(forms.ModelForm):
                                   'placeholder': 'password'})
     confirm_password.widget.attrs.update({'class': 'form-control',
                                   'placeholder': 'Re-type password'})
+
+    def clean(self):
+        cleaned_data = super(RegisterForm, self).clean()
+        password = cleaned_data.get("password")
+        confirm_password = cleaned_data.get("confirm_password")
+
+        if password != confirm_password:
+            raise forms.ValidationError(
+                "passwords do not match"
+            )
