@@ -5,6 +5,7 @@ urlpatterns = [
     # The views to handle the logic at home page route is 'views.home'
     path('', views.home, name='main-home'),
     path('about/', views.about, name='main-about'),
+    path('single-list/', views.single_list, name='main-singlelist'),
     path('register/', mv.Register.as_view(), name="main-register"),
     path('login/', mv.Login.as_view(), name="main-login"),
 ]

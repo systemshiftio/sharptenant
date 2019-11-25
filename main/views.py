@@ -13,6 +13,8 @@ def home(request):
 
 def about(request):
     return render(request, 'main/about.html')
+def single_list(request):
+    return render(request, 'main/single-list.html')
 
 
 class Register(View):
