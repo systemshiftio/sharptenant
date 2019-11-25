@@ -38,6 +38,15 @@
 			rel="stylesheet"
 		/>
 
+		{% comment %} LOGIN FORM {% endcomment %}
+		<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700,300' rel='stylesheet' type='text/css'>
+	
+	<link rel="stylesheet" href="{% static 'main/css/bootstrap.min-login.css' %}">
+	<link rel="stylesheet" href="{% static 'main/css/animate-login.css' %}">
+	<link rel="stylesheet" href="{% static 'main/css/style-login.css' %}">
+	<!-- Modernizr JS -->
+	<script src="{% static 'main/js/modernizr-2.6.2.min.js' %}"></script>
+
 		{% if title %}
 		<title>sharptenant - {{title}}</title>
 		{% else %}
@@ -80,8 +89,8 @@
 								<a href=""><i class="fa fa-linkedin"></i></a>
 							</div>
 							<div class="user-panel">
-								<a href=""><i class="fa fa-user-circle-o"></i> Register</a>
-								<a href=""><i class="fa fa-sign-in"></i> Login</a>
+								<a href="{% url 'main-register' %}"><i class="fa fa-user-circle-o"></i> Register</a>
+								<a href="{% url 'main-login' %}"><i class="fa fa-sign-in"></i> Login</a>
 							</div>
 						</div>
 					</div>
@@ -91,7 +100,7 @@
 				<div class="row">
 					<div class="col-12">
 						<div class="site-navbar">
-							<a href="#" class="site-logo"
+							<a href="{% url 'main-home' %}" class="site-logo"
 								><img src="{% static 'main/img/logo.png' %}"
 							/></a>
 							<div class="nav-switch">
@@ -230,6 +239,17 @@
 		<script src="{% static 'main/js/owl.carousel.min.js' %}"></script>
 		<script src="{% static 'main/js/masonry.pkgd.min.js' %}"></script>
 		<script src="{% static 'main/js/magnific-popup.min.js' %}"></script>
+
+		<!-- jQuery- LOGIN FORM-->
+	<script src="{% static 'main/js/jquery.min.js' %}"></script>
+	<!-- Bootstrap -->
+	<script src="{% static 'main/js/bootstrap.min-login.js' %}"></script>
+	<!-- Placeholder -->
+	<script src="{% static 'main/js/jquery.placeholder.min.js' %}"></script>
+	<!-- Waypoints -->
+	<script src="{% static 'main/js/jquery.waypoints.min.js' %}"></script>
+	<!-- Main JS -->
+	<script src="{% static 'main/js/main-login.js' %}"></script>
 
 		<script src="{% static 'main/js/main.js' %}"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/smooth-scroll/16.1.0/smooth-scroll.min.js"></script>
