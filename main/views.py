@@ -32,6 +32,7 @@ class Register(View):
             username = form.cleaned_data.get('username')
             email = form.cleaned_data.get('email')
             password = form.cleaned_data.get('password')
+            confirm_password = form.cleaned_data.get('confirm_password')
             register_form.set_password(password)
             register_form.save()
             new_user = authenticate(username=username,

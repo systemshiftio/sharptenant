@@ -20,6 +20,7 @@ class RegisterForm(forms.ModelForm):
     password.widget.attrs.update({'class': 'form-control',
                                   'placeholder': 'password'})
     confirm_password.widget.attrs.update({'class': 'form-control',
+
                                           'placeholder': 'Re-type password'})
 
 
@@ -36,3 +37,6 @@ class LoginForm(forms.ModelForm):
                                'placeholder': 'email'})
     password.widget.attrs.update({'class': 'form-control',
                                   'placeholder': 'password'})
+                                 
+
+   
