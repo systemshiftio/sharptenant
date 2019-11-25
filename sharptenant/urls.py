@@ -15,10 +15,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path,include
-
+from main.views import create_user, about
 urlpatterns = [
     path('admin/', admin.site.urls),
     # This url mapings will send us to our 'main app'
     path('', include('main.urls')),
+    path('about/', about, name='main-about'),
+    path('signup/', create_user, name='create user')
 ]
 
