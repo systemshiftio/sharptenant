@@ -1,4 +1,4 @@
-{%extends 'main/base.html'%} {% load static %} {%block content %}
+{% extends 'main/base.html' %} {% load static %} {%block content %}
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
@@ -33,7 +33,12 @@
 	<script src="js/respond.min.js"></script>
 	<![endif]-->
 
-	
+	<section class="page-top-section set-bg" data-setbg="{% static 'main/img/page-top-bg.jpg' %}">
+        <div class="container text-white">
+            <h2>LOGIN HERE!</h2>
+        </div>
+    </section>
+
 	<div class="style-3 wrapper">
 
 		<div class="container">

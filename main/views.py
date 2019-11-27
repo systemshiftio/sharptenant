@@ -15,6 +15,10 @@ def about(request):
     return render(request, 'main/about.html')
 
 
+def single_list(request):
+    return render(request, 'main/single-list.html')
+
+
 class Register(View):
     form_class = RegisterForm
     template_name = 'main/sign-up.html'
