@@ -15,6 +15,7 @@ def about(request):
     return render(request, 'main/about.html')
 
 
+
 class Register(View):
     form_class = RegisterForm
     template_name = 'main/sign-up.html'
