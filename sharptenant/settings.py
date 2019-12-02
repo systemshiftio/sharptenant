@@ -14,6 +14,7 @@ import environ
 import os
 from decouple import config
 from dj_database_url import parse as db_url
+
 env = environ.Env(
     # set casting, default value
     DEBUG=(bool, False)
@@ -23,6 +24,9 @@ environ.Env.read_env()
 
 # False if not in os.environ
 DEBUG = env('DEBUG')
+
+
+import cloudinary
 
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -38,20 +42,30 @@ SECRET_KEY = '8vc0%pfbpqt+l*8d1@f*&9^t2x&kzplw+gm9-fperffuu^lm$x'
 # SECURITY WARNING: don't run with debug turned on in production!
 # DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
 
 INSTALLED_APPS = [
-    'main.apps.MainConfig',
+    # 'main.apps.MainConfig',
     'django.contrib.admin',
     'django.contrib.auth',
+    'django.contrib.sites',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'cloudinary',
+    'disqus',
+    'main',
 ]
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+SITE_ID = 1
+
+#DISQUS SETTINGS
+DISQUS_API_KEY = 'tB7w7HYWCeD1XxXu57yBgb602otDc9rx4mpTgy47zSKL0KtPJa9DfF2UWfv4rH1g'
+DISQUS_WEBSITE_SHORTNAME = 'thesharptenant-com'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -62,6 +76,12 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+cloudinary.config( 
+  cloud_name = "dkozdkklg",
+  api_key = "189336778521461",
+  api_secret = "hfTCRR4jiO4j0dcgsSh8vGqA4Vc" 
+)
 
 ROOT_URLCONF = 'sharptenant.urls'
 
@@ -82,6 +102,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'sharptenant.wsgi.application'
+APPEND_SLASH=False
 
 
 # Database
