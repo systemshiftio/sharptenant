@@ -5,7 +5,8 @@ import main.views as mv
 
 urlpatterns = [
 
-    path('', views.home,name='main-home'),
+    path('', views.home, name='main-home'),
+    path('', views.about, name='main-about'),
     path('register/', mv.Register.as_view()),
     path('signin/', mv.Authentication.as_view()),
     path('review/', views.all_review),
