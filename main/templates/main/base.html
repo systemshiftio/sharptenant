@@ -44,6 +44,13 @@
 	<link rel="stylesheet" href="{% static 'main/css/bootstrap.min-login.css' %}">
 	<link rel="stylesheet" href="{% static 'main/css/animate-login.css' %}">
 	<link rel="stylesheet" href="{% static 'main/css/style-login.css' %}">
+	<style>
+	.site-logo img {
+       height: 40px;
+       width: 136px;
+       background-color: powderblue;
+}
+	</style>
 	<!-- Modernizr JS -->
 	<script src="{% static 'main/js/modernizr-2.6.2.min.js' %}"></script>
 
@@ -105,7 +112,7 @@
 					<div class="col-12">
 						<div class="site-navbar">
 							<a href="{% url 'main-home' %}" class="site-logo"
-								><img src="{% static 'main/img/logo.png' %}"
+								><img src="{% static 'main/img/logo-st.jpeg' %}"
 							/></a>
 							<div class="nav-switch">
 								<i class="fa fa-bars"></i>
@@ -115,7 +122,7 @@
 								<li><a href="{% url 'main-home' %}">Blog</a></li>
 								<li><a href="{% url 'main-about' %}">About</a></li>
 								<li><a href="{% url 'main-home' %}">Contact</a></li>
-								<li><a href="/review/">Review</a></li>
+								<li><a href="/write-review/">Review</a></li>
 							</ul>
 						</div>
 					</div>
@@ -135,7 +142,7 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-lg-3 col-md-6 footer-widget">
-						<img src="{% static 'main/img/logo.png' %}" />
+						<img src="{% static 'main/img/logo-st.jpeg' %}" />
 						<p>
 							We are empowering Tenants , curbing the excesses of landlords and giving tenants an heads up on what property they want to pay for.
 						</p>
