@@ -61,21 +61,51 @@ LOCATION = (
     ('ikeja', 'Ikeja'),
     ('yaba', 'Yaba'),
     ('iyana-ipaja', 'Iyana-Ipaja'),
-    ('oworonsoke', 'Oworonsoki')
+    ('oworonsoki', 'Oworonsoki')
+)
+
+STATE = (
+    ('lagos', 'Lagos'),
+    ('imo', 'Imo'),
+    ('abuja', 'Abuja'),
+    ('port-hacourt', 'Port-hacourt'),
 )
 
 class Review(models.Model):
-    owner = models.ForeignKey(AppUser, on_delete=models.CASCADE)
+    review_id = models.AutoField(primary_key=True)
+    owner = models.ForeignKey(AppUser, null=True, on_delete=models.CASCADE)
+    profile_pics = models.CharField(max_length=300, default='https://res.cloudinary.com/dkozdkklg/image/upload/v1570307530/nfedaavctszhl6crduyw.jpg')
     content = models.TextField()
     title = models.CharField(max_length=200)
-    street_name = models.CharField(max_length=100)
+    street_name = models.CharField(max_length=100) # address of house
     location = models.CharField(max_length=30, choices=LOCATION)
+    state = models.CharField(max_length=50, default='Lagos', choices=STATE)
     house_number = models.IntegerField(null=True)
     house_alias = models.CharField(max_length=100, null=True)
     landlord = models.CharField(max_length=100, null=True)
     images = JSONField(default=list)
     video = JSONField(default=list)
+    likes = models.IntegerField(default=0)
+    unlike = models.IntegerField(default=0)
     date_created = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.title
+
+
+class Blog(models.Model):
+    writer = models.ForeignKey(AppUser, on_delete=models.CASCADE)
+    content = models.TextField()
+    title = models.CharField(max_length=200)
+    date_created = models.DateTimeField(auto_now_add=True)
+    likes = models.IntegerField(default=0)
+
+    def __str__(self):
+        return self.title
+
+
+class Subscription(models.Model):
+    email = models.EmailField()
+    date_created = models.DateTimeField(auto_now_add=True)
+    
+
