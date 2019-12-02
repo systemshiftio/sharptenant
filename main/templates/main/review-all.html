@@ -5,6 +5,7 @@
 <head>
 	<title>Sharptenant-Reviews</title>
 	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 	<!-- Favicon -->   
 	<link href="{% static 'main/img/favicon.ico' %}" rel="shortcut icon"/>
@@ -28,9 +29,9 @@
 </head>
 <body>
 	<!-- Page Preloder -->
-	<div id="preloder">
+	<!-- <div id="preloder">
 		<div class="loader"></div>
-	</div>
+	</div> -->
 	
 	<!-- Header section -->
 	<header class="header-section">
@@ -55,8 +56,13 @@
 							<a href=""><i class="fa fa-linkedin"></i></a>
 						</div>
 						<div class="user-panel">
-							<a href=""><i class="fa fa-user-circle-o"></i> Register</a>
-							<a href=""><i class="fa fa-sign-in"></i> Login</a>
+								{% if request.user.is_authenticated == True %}
+								<a href=""><i class="fa fa-user-circle-o"></i>Hi  {{request.user.username}}</a>
+								   <a href="/logout/"><i class="fa fa-sign-in"></i> Logout</a>
+								   {% else %}
+								   <a href=""><i class="fa fa-user-circle-o"></i> Register</a>
+								   <a href="/signin/"><i class="fa fa-sign-in"></i> Login</a>
+							   {% endif %}
 						</div>
 					</div>
 				</div>
@@ -66,7 +72,7 @@
 			<div class="row">
 				<div class="col-12">
 					<div class="site-navbar">
-						<a href="#" class="site-logo"><img src="img/logo.png" alt=""></a>
+						<a href="#" class="site-logo"><img src="main/img/logo.png" alt=""></a>
 						<div class="nav-switch">
 							<i class="fa fa-bars"></i>
 						</div>
@@ -95,123 +101,56 @@
 	<!-- Breadcrumb -->
 	<div class="site-breadcrumb">
 		<div class="container">
+			
 			<a href=""><i class="fa fa-home"></i>Review</a>
-			<span><i class="fa fa-angle-right"></i>Location</span>
+			
+			<span><i class="fa fa-angle-right"></i>{{review.location}}</span>
+			
 		</div>
 	</div>
 
 	<!-- page -->
+	
 	<section class="page-section blog-page">
 		<div class="container">
+				
 			<div class="row">
+				{% for review in review %}
 				<!-- blog post -->
 				<div class="col-lg-4 col-md-6 blog-item">
-					<img src="{% static 'main/img/blog/1.jpg' %}" alt="">
-					<h5><a href="single-blog.html">Housing confidence hits record high as prices skyrocket</a></h5>
+					<img src={{review.images.0}} alt="" style="width:330px;height:185px;">
+					<h5><a href="single-blog.html">{{ review.title }}</a></h5>
 					<div class="blog-meta">
-						<span><i class="fa fa-user"></i>Amanda Seyfried</span>
-						<span><i class="fa fa-clock-o"></i>25 Jun 201</span>
+						<span><i class="fa fa-user"></i>{{ review.owner }}</span>
+						<span><i class="fa fa-clock-o"></i>{{review.date_created}}</span>
 					</div>
-					<p>Integer luctus diam ac scerisque consectetur. Vimus dotnetact euismod lacus sit amet. Aenean interdus mid vitae maximus...</p>
-					<button style="background: #92c570; border:none; border-radius: 13px;" type="submit" class="btn btn-success btn-lg btn-block">View</button>
-				</div>
-				<!-- blog post -->
-				<div class="col-lg-4 col-md-6 blog-item">
-					<img src="{% static 'main/img/blog/2.jpg' %}" alt="">
-					<h5><a href="single-blog.html">Taylor Swift is selling her $2.95 million Beverly Hills mansion</a></h5>
-					<div class="blog-meta">
-						<span><i class="fa fa-user"></i>Amanda Seyfried</span>
-						<span><i class="fa fa-clock-o"></i>25 Jun 201</span>
-					</div>
-					<p>Integer luctus diam ac scerisque consectetur. Vimus dotnetact euismod lacus sit amet. Aenean interdus mid vitae maximus...</p>
-					<button style="background: #92c570; border:none; border-radius: 13px;" type="submit" class="btn btn-success btn-lg btn-block">View</button>
+					<p>{{ review.content | slice:":35" }}...</p>
+					<br>
+					<a href="/review-detail/{{review.review_id}}/" style="background: #30caa0; border:none; border-radius: 13px;" type="submit" class="btn btn-success btn-lg btn-block">View</a>
 					
 				</div>
-				<!-- blog post -->
-				<div class="col-lg-4 col-md-6 blog-item">
-					<img src="{% static 'main/img/blog/3.jpg' %}" alt="">
-					<h5><a href="single-blog.html">NYC luxury housing market saturated with inventory, says celebrity realtor</a></h5>
-					<div class="blog-meta">
-						<span><i class="fa fa-user"></i>Amanda Seyfried</span>
-						<span><i class="fa fa-clock-o"></i>25 Jun 201</span>
-					</div>
-					<p>Integer luctus diam ac scerisque consectetur. Vimus dotnetact euismod lacus sit amet. Aenean interdus mid vitae maximus...</p>
-					<button style="background: #92c570; border:none; border-radius: 13px;" type="submit" class="btn btn-success btn-lg btn-block">View</button>
-				</div>			
-				<!-- blog post -->
-				<div class="col-lg-4 col-md-6 blog-item">
-					<img src="{% static 'main/img/blog/4.jpg' %}" alt="">
-					<h5><a href="single-blog.html">Sellers are increasingly stripping out luxury homes instead of tricking them out</a></h5>
-					<div class="blog-meta">
-						<span><i class="fa fa-user"></i>Amanda Seyfried</span>
-						<span><i class="fa fa-clock-o"></i>25 Jun 201</span>
-					</div>
-					<p>Integer luctus diam ac scerisque consectetur. Vimus dotnetact euismod lacus sit amet. Aenean interdus mid vitae maximus...</p>
-					<button style="background: #92c570; border:none; border-radius: 13px;" type="submit" class="btn btn-success btn-lg btn-block">View</button>
-				</div>
-				<!-- blog post -->
-				<div class="col-lg-4 col-md-6 blog-item">
-					<img src="{% static 'main/img/blog/5.jpg' %}" alt="">
-					<h5><a href="single-blog.html">Mortgage demand drops 2.5% on the highest rates in nearly 5 years </a></h5>
-					<div class="blog-meta">
-						<span><i class="fa fa-user"></i>Amanda Seyfried</span>
-						<span><i class="fa fa-clock-o"></i>25 Jun 201</span>
-					</div>
-					<p>Integer luctus diam ac scerisque consectetur. Vimus dotnetact euismod lacus sit amet. Aenean interdus mid vitae maximus...</p>
-					<button style="background: #92c570; border:none; border-radius: 13px;" type="submit" class="btn btn-success btn-lg btn-block">View</button>
-				</div>
-				<!-- blog post -->
-				<div class="col-lg-4 col-md-6 blog-item">
-					<img src="{% static 'main/img/blog/6.jpg' %}" alt="">
-					<h5><a href="single-blog.html">Here's how to tap your home equity safely, keep an eye on rates & have a cushion </a></h5>
-					<div class="blog-meta">
-						<span><i class="fa fa-user"></i>Amanda Seyfried</span>
-						<span><i class="fa fa-clock-o"></i>25 Jun 201</span>
-					</div>
-					<p>Integer luctus diam ac scerisque consectetur. Vimus dotnetact euismod lacus sit amet. Aenean interdus mid vitae maximus...</p>
-					<button style="background: #92c570; border:none; border-radius: 13px;" type="submit" class="btn btn-success btn-lg btn-block">View</button>
-				</div>
-				<!-- blog post -->
-				<div class="col-lg-4 col-md-6 blog-item">
-					<img src="{% static 'main/img/blog/7.jpg' %}" alt="">
-					<h5><a href="single-blog.html">18 secrets from real estate insiders for maximizing your profits</a></h5>
-					<div class="blog-meta">
-						<span><i class="fa fa-user"></i>Amanda Seyfried</span>
-						<span><i class="fa fa-clock-o"></i>25 Jun 201</span>
-					</div>
-					<p>Integer luctus diam ac scerisque consectetur. Vimus dotnetact euismod lacus sit amet. Aenean interdus mid vitae maximus...</p>
-					<button style="background: #92c570; border:none; border-radius: 13px;" type="submit" class="btn btn-success btn-lg btn-block">View</button>
-				</div>
-				<!-- blog post -->
-				<div class="col-lg-4 col-md-6 blog-item">
-					<img src="{% static 'main/img/blog/8.jpg' %}" alt="">
-					<h5><a href="single-blog.html">Home prices just took the biggest jump in four years</a></h5>
-					<div class="blog-meta">
-						<span><i class="fa fa-user"></i>Amanda Seyfried</span>
-						<span><i class="fa fa-clock-o"></i>25 Jun 201</span>
-					</div>
-					<p>Integer luctus diam ac scerisque consectetur. Vimus dotnetact euismod lacus sit amet. Aenean interdus mid vitae maximus...</p>
-					<button style="background: #92c570; border:none; border-radius: 13px;" type="submit" class="btn btn-success btn-lg btn-block">View</button>
-				</div>
-				<!-- blog post -->
-				<div class="col-lg-4 col-md-6 blog-item">
-					<img src="{% static 'main/img/blog/9.jpg' %}" alt="">
-					<h5><a href="single-blog.html">New York's luxury real estate market is in a correction</a></h5>
-					<div class="blog-meta">
-						<span><i class="fa fa-user"></i>Amanda Seyfried</span>
-						<span><i class="fa fa-clock-o"></i>25 Jun 201</span>
-					</div>
-					<p>Integer luctus diam ac scerisque consectetur. Vimus dotnetact euismod lacus sit amet. Aenean interdus mid vitae maximus...</p>
-					<button style="background: #92c570; border:none; border-radius: 13px;" type="submit" class="btn btn-success btn-lg btn-block">View</button>
-				</div>
-				
+				{% endfor %}
 			</div>
-			<div class="site-pagination">
-				<span>1</span>
-				<a href="#">2</a>
-				<a href="#">3</a>
-				<a href="#"><i class="fa fa-angle-right"></i></a>
-			</div>
+
+							<div class="site-pagination">
+						
+									{% if review.has_previous %}
+										<a href="?page=1">&laquo; 1</a>
+										<a href="?page={{ review.previous_page_number }}"><i class="fa fa-angle-left"></i></a>
+									{% endif %}
+							
+									<span>
+										 {{ review.number }}
+									</span>
+							
+									{% if review.has_next %}
+										<a href="?page={{ review.next_page_number }}"><i class="fa fa-angle-right"></i></a>								
+										<a href="?page={{ review.paginator.num_pages }}">{{review.paginator.num_pages}}&raquo;</a>
+									{% endif %}
+
+
+							</div>
+			
 		</div>
 	</section>
 	<!-- page end -->
@@ -284,7 +223,7 @@
 				</div>
 				<div class="copyright">
 					<p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | by <a href="https://thesharptenant.com" target="_blank">TheSharptenant</a>
 <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
 				</div>
 			</div>

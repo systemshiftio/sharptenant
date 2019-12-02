@@ -116,6 +116,24 @@ ol {
 
 /* Buttons */
 
+.see-more-btn {
+	float: right;
+	position: relative;
+	display: inline-block;
+	padding: 15px 30px;
+	font-size: 16px;
+	font-weight: 600;
+	line-height: 16px;
+	letter-spacing: 2px;
+	border-radius: 25px;
+	min-width: 100px;
+	text-align: center;
+	background: #30caa0;
+	cursor: pointer;
+	border: none;
+	color: #fff;
+}
+
 .site-btn {
 	position: relative;
 	display: inline-block;
@@ -349,7 +367,7 @@ ol {
 	height: 46px;
 	border: none;
 	border-radius: 2px;
-	width: calc(43% - 20px);
+	width: calc(43% - 10px);
 	margin-right: 20px;
 	padding: 5px 20px;
 	font-size: 14px;
@@ -540,6 +558,7 @@ ol {
 	background: #30caa0;
 	color: #fff;
 }
+
 
 .feature-pic {
 	height: 250px;
