@@ -1,0 +1,206 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Sharptenant-Reviews</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<!-- Favicon -->   
+	<link href="{% static 'main/img/favicon.ico' %}" rel="shortcut icon"/>
+
+	<!-- Google Fonts -->
+	<link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
+
+	<!-- Stylesheets -->
+	<link rel="stylesheet" href="{% static 'main/css/bootstrap.min.css' %}"/>
+	<link rel="stylesheet" href="{% static 'main/css/font-awesome.min.css' %}"/>
+	<link rel="stylesheet" href="{% static 'main/css/animate.css' %}"/>
+	<link rel="stylesheet" href="{% static 'main/css/owl.carousel.css' %}"/>
+	<link rel="stylesheet" href="{% static 'main/css/styles.css' %}"/>
+
+
+	<!--[if lt IE 9]>
+	  <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+	  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+	<![endif]-->
+
+</head>
+<body>
+	<!-- Page Preloder -->
+	<!-- <div id="preloder">
+		<div class="loader"></div>
+	</div> -->
+	
+	<!-- Header section -->
+	<header class="header-section">
+		<div class="header-top">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-6 header-top-left">
+						<div class="top-info">
+							<i class="fa fa-phone"></i>
+							(+234) 810 458 1100
+						</div>
+						<div class="top-info">
+							<i class="fa fa-envelope"></i>
+							info@thesharptenant.com
+						</div>
+					</div>
+					<div class="col-lg-6 text-lg-right header-top-right">
+						<div class="top-social">
+							<a href=""><i class="fa fa-facebook"></i></a>
+							<a href=""><i class="fa fa-twitter"></i></a>
+							<a href=""><i class="fa fa-instagram"></i></a>
+							<a href=""><i class="fa fa-linkedin"></i></a>
+						</div>
+						<div class="user-panel">
+								{% if request.user.is_authenticated == True %}
+								<a href=""><i class="fa fa-user-circle-o"></i>Hi  {{request.user.username}}</a>
+								   <a href="/logout/"><i class="fa fa-sign-in"></i> Logout</a>
+								   {% else %}
+								   <a href="/register/"><i class="fa fa-user-circle-o"></i> Register</a>
+								   <a href="/signin/"><i class="fa fa-sign-in"></i> Login</a>
+							   {% endif %}
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="container">
+			<div class="row">
+				<div class="col-12">
+					<div class="site-navbar">
+						<a href="#" class="site-logo"><img src="main/img/logo.png" alt=""></a>
+						<div class="nav-switch">
+							<i class="fa fa-bars"></i>
+						</div>
+						<ul class="main-menu">
+							<li><a href="{% url 'main-home' %}">Home</a></li>
+							<li><a href="{% url 'main-home' %}">Blog</a></li>
+							<li><a href="{% url 'main-about' %}">About</a></li>
+							<li><a href="{% url 'main-home' %}">Contact</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</header>
+	<!-- Header section end -->
+    <!-- Child template can override what is in the block body -->
+		{% block content %}{% endblock %}
+        <!-- Footer section -->
+		<footer
+			class="footer-section set-bg"
+			data-setbg="{% static 'main/img/footer-bg.jpg' %}"
+		>
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-3 col-md-6 footer-widget">
+						<img src="{% static 'main/img/logo.png' %}" />
+						<p>
+							We are empowering Tenants , curbing the excesses of landlords and giving tenants an heads up on what property they want to pay for.
+						</p>
+						<div class="social">
+							<a href="#"><i class="fa fa-facebook"></i></a>
+							<a href="#"><i class="fa fa-twitter"></i></a>
+							<a href="#"><i class="fa fa-instagram"></i></a>
+							<a href="#"><i class="fa fa-linkedin"></i></a>
+						</div>
+					</div>
+					<div class="col-lg-3 col-md-6 footer-widget">
+						<div class="contact-widget">
+							<h5 class="fw-title">CONTACT US</h5>
+							<p>
+								<i class="fa fa-map-marker"></i>371 Borno Way, Alogomeji Yaba
+							<p><i class="fa fa-phone"></i>(+234) 8104581100</p>
+							<p><i class="fa fa-envelope"></i>info.thesharptenant.com</p>
+							<p><i class="fa fa-clock-o"></i>Mon - Sat, 08 AM - 06 PM</p>
+						</div>
+					</div>
+					
+					<div class="col-lg-3 col-md-6  footer-widget">
+						<div class="newslatter-widget">
+							<h5 class="fw-title">NEWSLETTER</h5>
+							<p>
+								Subscribe your email to get the latest news on real estate
+							</p>
+							<form class="footer-newslatter-form">
+								<input type="text" placeholder="Email address" />
+								<button><i class="fa fa-send"></i></button>
+							</form>
+						</div>
+					</div>
+				</div>
+				<div class="footer-bottom">
+					<div class="footer-nav">
+						<ul>
+							<li><a href="{% url 'main-home' %}">Home</a></li>
+							
+							
+							<li><a href="{% url 'main-about' %}">About</a></li>
+							<li><a href="{% url 'main-home' %}">Blog</a></li>
+							<li><a href="{% url 'main-home' %}">Contact</a></li>
+						</ul>
+					</div>
+					<div class="copyright">
+						<p>
+							
+							Copyright &copy;
+							<script>
+								document.write(new Date().getFullYear());
+							</script>
+							All rights reserved by <a href="#" target="_blank">thesharptenant</a>
+							
+						</p>
+					</div>
+				</div>
+			</div>
+		</footer>
+		<!-- Footer section end -->
+
+		<script
+			src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+			integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+			crossorigin="anonymous"
+		></script>
+		<script
+			src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+			integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+			crossorigin="anonymous"
+		></script>
+		<script
+			src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+			integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+			crossorigin="anonymous"
+		></script>
+
+		<!--====== Javascripts & Jquery ======-->
+		<script src="{% static 'main/js/jquery-3.2.1.min.js' %}"></script>
+		<script src="{% static 'main/js/bootstrap.min.js' %}"></script>
+		<script src="{% static 'main/js/owl.carousel.min.js' %}"></script>
+		<script src="{% static 'main/js/masonry.pkgd.min.js' %}"></script>
+		<script src="{% static 'main/js/magnific-popup.min.js' %}"></script>
+
+		<!-- jQuery- LOGIN FORM-->
+	<script src="{% static 'main/js/jquery.min.js' %}"></script>
+	<!-- Bootstrap -->
+	<script src="{% static 'main/js/bootstrap.min-login.js' %}"></script>
+	<!-- Placeholder -->
+	<script src="{% static 'main/js/jquery.placeholder.min.js' %}"></script>
+	<!-- Waypoints -->
+	<script src="{% static 'main/js/jquery.waypoints.min.js' %}"></script>
+	<!-- Main JS -->
+	<script src="{% static 'main/js/main-login.js' %}"></script>
+
+		<script src="{% static 'main/js/main.js' %}"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/smooth-scroll/16.1.0/smooth-scroll.min.js"></script>
+
+		<script>
+			var scroll = new SmoothScroll('a[href*="#"]', {
+				speed: 1000
+			});
+		</script>
+	</body>
+</html>
