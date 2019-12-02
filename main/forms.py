@@ -26,6 +26,7 @@ class RegisterForm(forms.ModelForm):
 
 
 class LoginForm(forms.ModelForm):
+
     email = forms.EmailField()
 
     password = forms.CharField(widget=forms.PasswordInput)
@@ -38,13 +39,7 @@ class LoginForm(forms.ModelForm):
                                'placeholder': 'email'})
     password.widget.attrs.update({'class': 'form-control',
                                   'placeholder': 'password'})
-                                 
-
-        if password != confirm_password:
-            raise forms.ValidationError(
-                "passwords do not match"
-            )
-
+                    
 LOCATION = (
     ('ikeja', 'Ikeja'),
     ('yaba', 'Yaba'),
