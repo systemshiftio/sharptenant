@@ -49,10 +49,14 @@ def home(request):
 
 
 
+def about(request):
+    return render(request, 'main/about.html')
+
+
 class Register(View):
     form_class = RegisterForm
     template_name = 'main/sign-up.html'
-    
+
     def get(self, request, *args, **kwargs):
         form = self.form_class()
         return render(request, self.template_name, {'form': form})
@@ -190,7 +194,3 @@ def detailReview(request, review_id):
     user = AppUser.objects.get(username=review.owner.username)
     context = {'review': review, 'similar_review':similar_review, 'user':user}
     return render(request, 'main/single-review.html',context)
-
-
-
-    

@@ -4,6 +4,7 @@ from . import views
 import main.views as mv
 
 urlpatterns = [
+<<<<<<< HEAD
 
     path('', views.home,name='main-home'),
     path('register/', mv.Register.as_view()),
@@ -16,3 +17,11 @@ urlpatterns = [
 ]
 
 handler404 = 'main.views.error_404_view'
+=======
+    # The views to handle the logic at home page route is 'views.home'
+    path('', views.home, name='main-home'),
+    path('about/', views.about, name='main-about'),
+    path('register/', mv.Register.as_view(), name="main-register"),
+    path('login/', mv.Login.as_view(), name="main-login"),
+]
+>>>>>>> ec537d404eab69e22f922a581b3565d90fb208c0

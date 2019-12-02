@@ -92,19 +92,11 @@ APPEND_SLASH=False
 
 
 # Database
-# https://docs.djangoproject.com/en/2.2/ref/settings/#databases
+# https://docs.djangoproject.com/en/2.2/ref/settings/#daatabases
 
 DATABASES = {
     'default': config('DATABASE_URL', default='postgres:///sharptenant', cast=db_url),
 }
-
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-#     }
-# }
 
 
 # Password validation
@@ -125,10 +117,10 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-# sendgrid settings 
+# sendgrid settings
 
 EMAIL_HOST = 'smtp.sendgrid.net'
-EMAIL_PORT  = 587
+EMAIL_PORT = 587
 EMAIL_HOST_USER = config('EMAIL_HOST_USER', default='')
 EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD', default='')
 Enable_USE_SSL = True
@@ -154,4 +146,4 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, "static/")
 
-AUTH_USER_MODEL = "main.AppUser" 
+AUTH_USER_MODEL = "main.AppUser"
