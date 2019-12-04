@@ -60,8 +60,8 @@
 								<a href=""><i class="fa fa-user-circle-o"></i>Hi  {{request.user.username}}</a>
 								   <a href="/logout"><i class="fa fa-sign-in"></i> Logout</a>
 								   {% else %}
-								   <a href=""><i class="fa fa-user-circle-o"></i> Register</a>
-								   <a href="/signin"><i class="fa fa-sign-in"></i> Login</a>
+								   <a href="/register/"><i class="fa fa-user-circle-o"></i> Register</a>
+								   <a href="/signin/"><i class="fa fa-sign-in"></i> Login</a>
 							   {% endif %}
 						</div>
 					</div>
@@ -72,15 +72,16 @@
 			<div class="row">
 				<div class="col-12">
 					<div class="site-navbar">
-						<a href="#" class="site-logo"><img src="main/img/logo.png" alt=""></a>
+							<img src="{% static 'main/img/logo-st.png' %}" style="width:136px; height:40px"/>
 						<div class="nav-switch">
 							<i class="fa fa-bars"></i>
 						</div>
 						<ul class="main-menu">
-							<li><a href="{% url 'main-home' %}">Home</a></li>
-							<li><a href="blog.html">Blog</a></li>
-							<li><a href="single-list.html">About</a></li>
-							<li><a href="contact.html">Contact</a></li>
+								<li><a href="/">Home</a></li>
+								<li><a href="/blog/">Blog</a></li>
+								<li><a href="/about/">About</a></li>
+								<li><a href="/contact/">Contact</a></li>
+								<li><a href="/write-review/">Review</a></li>
 						</ul>
 					</div>
 				</div>
@@ -92,7 +93,7 @@
 	<!-- Page top section -->
 	<section class="page-top-section set-bg" data-setbg="{% static 'main/img/page-top-bg.jpg' %}">
 		<div class="container text-white">
-			<h2>SINGLE LISTING</h2>
+			<h2>SINGLE REVIEW</h2>
 		</div>
 	</section>
 	<!--  Page top end -->
@@ -100,8 +101,7 @@
 	<!-- Breadcrumb -->
 	<div class="site-breadcrumb">
 		<div class="container">
-			<a href=""><i class="fa fa-home"></i>Home</a>
-			<span><i class="fa fa-angle-right"></i>Single Listing</span>
+			<a href=""><i class="fa fa-home"></i>Review</a>
 		</div>
 	</div>
 	
@@ -211,7 +211,7 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-lg-3 col-md-6 footer-widget">
-						<img src="{% static 'main/img/logo-st.jpeg' %}" />
+							<img src="{% static 'main/img/logo-st.png' %}" style="width:136px; height:30px"/>
 						<p>
 							We are empowering Tenants , curbing the excesses of landlords and giving tenants an heads up on what property they want to pay for.
 						</p>
@@ -239,8 +239,9 @@
 							<p>
 								Subscribe your email to get the latest news on real estate
 							</p>
-							<form class="footer-newslatter-form">
-								<input type="text" placeholder="Email address" />
+							<form class="footer-newslatter-form" method="POST", action="/subscribe/">
+								{% csrf_token %}
+								{{news.email}}
 								<button><i class="fa fa-send"></i></button>
 							</form>
 						</div>

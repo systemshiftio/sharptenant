@@ -16,11 +16,14 @@ Including another URLconf
 from django.contrib import admin
 from django.conf.urls import handler404
 from django.urls import path,include
+from django.contrib.auth import views as auth_views
+from main.forms import ForgetPasswordForm
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     # This url mapings will send us to our 'main app'
     path('', include('main.urls')),
+    path('', include('password_reset.urls')),
 ]
 handler404 = 'main.views.error_404_view'
 

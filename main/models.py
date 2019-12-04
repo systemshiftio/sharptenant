@@ -105,7 +105,7 @@ class Blog(models.Model):
 
 
 class Subscription(models.Model):
-    email = models.EmailField()
+    email = models.EmailField(unique=True)
     date_created = models.DateTimeField(auto_now_add=True)
     
 
