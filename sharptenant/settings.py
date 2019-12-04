@@ -45,6 +45,8 @@ INSTALLED_APPS = [
     'cloudinary',
     'disqus',
     'main',
+    'password_reset'
+
 ]
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 SITE_ID = 1
@@ -120,10 +122,11 @@ AUTH_PASSWORD_VALIDATORS = [
 # sendgrid settings
 
 EMAIL_HOST = 'smtp.sendgrid.net'
-EMAIL_PORT = 587
 EMAIL_HOST_USER = config('EMAIL_HOST_USER', default='')
 EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD', default='')
-Enable_USE_SSL = True
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+
 
 
 # Internationalization

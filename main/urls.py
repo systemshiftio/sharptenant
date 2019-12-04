@@ -14,6 +14,8 @@ urlpatterns = [
     path('search-review/', views.searchReview),
     path('write-review/', views.writeReview),
     path('review-detail/<int:review_id>/', views.detailReview),
+    path('subscribe/', views.subscribe),
+    path('about/', views.about),
 ]
 
 handler404 = 'main.views.error_404_view'

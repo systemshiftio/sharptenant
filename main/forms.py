@@ -25,11 +25,10 @@ class RegisterForm(forms.ModelForm):
                                           'placeholder': 'Re-type password'})
 
 
-class LoginForm(forms.ModelForm):
+class ForgetPasswordForm(forms.ModelForm):
 
     email = forms.EmailField()
 
-    password = forms.CharField(widget=forms.PasswordInput)
 
     class Meta:
         model = mm.AppUser
@@ -37,9 +36,19 @@ class LoginForm(forms.ModelForm):
 
     email.widget.attrs.update({'class': 'form-control',
                                'placeholder': 'email'})
-    password.widget.attrs.update({'class': 'form-control',
-                                  'placeholder': 'password'})
-                    
+
+
+class NewsletterForm(forms.ModelForm):
+    email = forms.EmailField(required=False)
+
+    class Meta:
+        model = mm.Subscription
+        fields = ('email',)
+    email.widget.attrs.update({
+                               'placeholder': 'Enter email'})
+
+    
+
 LOCATION = (
     ('ikeja', 'Ikeja'),
     ('yaba', 'Yaba'),
@@ -120,6 +129,7 @@ class LoginForm(forms.Form):
                                'placeholder': 'username'})
     password.widget.attrs.update({'class': 'form-control',
                                   'placeholder': 'password'})
+
 
 
 class ReviewForm(forms.ModelForm):

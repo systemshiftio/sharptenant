@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.views import View
-from .forms import RegisterForm, SearchForm, LoginForm, ReviewForm
-from .models import Review, AppUser
+from .forms import RegisterForm, SearchForm, LoginForm, ReviewForm, NewsletterForm
+from .models import Review, AppUser, Subscription
 from django.shortcuts import redirect
 from django.contrib.auth import authenticate, login, logout
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
@@ -29,6 +29,10 @@ def error_404_view(request, exception):
     data = {"name": "127.0.0.1:8000"}
     return render(request,'main/404.html', data)
 
+
+def reset_password(request):
+    return render(request, 'password_reset/base.html')
+
 def logout_view(request):
     logout(request)
     return redirect('/')
@@ -44,9 +48,33 @@ def home(request):
     except EmptyPage:
         review = paginator.page(paginator.num_pages)
     form = SearchForm()
+    news = NewsletterForm()
     return render(request, 'main/home.html', 
-                  {'form':form, 'review':recent_review})
+                  {'form':form, 'news':news, 'review':recent_review,})
 
+def subscribe(request):
+    if request.method == 'POST':
+        message = ''
+        news = NewsletterForm(request.POST)
+        if news.is_valid():
+            email = news.cleaned_data.get('email')
+            try:
+                Subscription.objects.create(email=email)
+                message = "You have subscribed to our newsletter"
+            except:
+                pass
+        recent_review = Review.objects.filter().order_by('-date_created')[:9]
+        page = request.GET.get('page', 1)
+        paginator = Paginator(recent_review, 9)
+        try:
+            review = paginator.page(page)
+        except PageNotAnInteger:
+            review = paginator.page(1)
+        except EmptyPage:
+            review = paginator.page(paginator.num_pages)
+        form = SearchForm()
+        return render(request, 'main/home.html', 
+                {'form':form, 'news':news,'review':recent_review, 'message':message})
 
 
 def about(request):
@@ -127,7 +155,8 @@ def searchReview(request):
                     review = paginator.page(paginator.num_pages)
             else:
                 review = Review.objects.filter(state__icontains=state, location__icontains=location).order_by('-date_created')
-                context = {'review':review}
+                news = NewsletterForm()
+                context = {'review':review, 'news': news}
                 page = request.GET.get('page', 1)
                 paginator = Paginator(review, 16)
                 try:
@@ -179,13 +208,14 @@ def writeReview(request):
                 print(message)
                 return render(request, 'main/new-review.html', {'form':form})
         else:
-            print(form.errors)
             message = forms.errors # add this message as a splash screen
-            return render(request, 'main/new-review.html', {'form': form})
+            news = NewsletterForm()
+            return render(request, 'main/new-review.html', {'form': form, 'news':news})
 
     else:
         form = ReviewForm()
-        return render(request, 'main/new-review.html', {'form': form})
+        news = NewsletterForm()
+        return render(request, 'main/new-review.html', {'form': form, 'news':news})
 
 
 def detailReview(request, review_id):
