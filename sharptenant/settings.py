@@ -28,7 +28,7 @@ SECRET_KEY = '8vc0%pfbpqt+l*8d1@f*&9^t2x&kzplw+gm9-fperffuu^lm$x'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['thesharptenant.com', 'www.thesharptenant.com', '127.0.0.1']
 
 
 # Application definition
@@ -122,8 +122,8 @@ AUTH_PASSWORD_VALIDATORS = [
 # sendgrid settings
 
 EMAIL_HOST = 'smtp.sendgrid.net'
-EMAIL_HOST_USER = config('EMAIL_HOST_USER', default='')
-EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD', default='')
+EMAIL_HOST_USER = config('EMAIL_HOST_USER', default='d')
+EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD', default='d')
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 
