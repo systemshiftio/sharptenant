@@ -200,7 +200,7 @@ def writeReview(request):
                 form.owner = request.user
                 new_list = [img1, img2, img3, img4]
                 review.images.extend(new_list)
-                review.owner = request.user
+                #review.owner = request.user
                 form.save()
                 return redirect('/review/')
             except Exception as e:
@@ -208,7 +208,7 @@ def writeReview(request):
                 print(message)
                 return render(request, 'main/new-review.html', {'form':form})
         else:
-            message = forms.errors # add this message as a splash screen
+            message = form.errors # add this message as a splash screen
             news = NewsletterForm()
             return render(request, 'main/new-review.html', {'form': form, 'news':news})
 

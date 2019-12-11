@@ -95,8 +95,8 @@ LOCATION = (
     ('ilaje', 'Ilaje'),
     ('bariga', 'Bariga'),
     ('arepo', 'Arepo'),
-    ('shangisha', 'Shangisha')
-    
+    ('shangisha', 'Shangisha'),
+    ('Ebute Metta', 'Ebute Metta'),
     
 )
 
@@ -152,9 +152,9 @@ class ReviewForm(forms.ModelForm):
         exclude = ('owner', 'images', 'review_id')
         
     title.widget.attrs.update({'placeholder': 'Review Title e.g Not a place fit for human'})
-    street_name.widget.attrs.update({'placeholder': 'Address e.g No 57 Okemu street oworonsoki'})
-    house_alias.widget.attrs.update({'placeholder': 'House Alias e.g Akindele house, Nikadel estate'})
-    landlord.widget.attrs.update({'placeholder': 'Landlord Name: e.g Akindele ileeru'})
+    street_name.widget.attrs.update({'placeholder': 'Address e.g No 5 Kolawole street ikeja'})
+    house_alias.widget.attrs.update({'placeholder': 'House Alias e.g Confo estate'})
+    landlord.widget.attrs.update({'placeholder': 'Landlord Name: e.g Mr Akinade'})
     location.widget.attrs.update({'class':'custom-select form-control mb-2 mr-sm-2'})
     state.widget.attrs.update({'class':'custom-select form-control mb-2 mr-sm-2'})
     image1.widget.attrs.update({'class': 'custom-file', 'accept':'image/*'})
