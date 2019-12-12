@@ -202,7 +202,6 @@ def writeReview(request):
             form.save()
         return redirect('/review/')
     
-    
     else:
         form = ReviewForm()
         news = NewsletterForm()
