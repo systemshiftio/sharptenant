@@ -200,13 +200,14 @@ def writeReview(request):
                 form.owner = request.user
                 new_list = [img1, img2, img3, img4]
                 review.images.extend(new_list)
-                #review.owner = request.user
+                review.owner = request.user
                 form.save()
                 return redirect('/review/')
             except Exception as e:
                 message = str(e) 
                 print(message)
-                return render(request, 'main/new-review.html', {'form':form})
+                return render(request, 'main/single-blog.html', {'message':message})
+       		#return render(request, 'main/single-blog.html', {'message',message})
         else:
             message = form.errors # add this message as a splash screen
             news = NewsletterForm()

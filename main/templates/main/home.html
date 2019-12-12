@@ -89,7 +89,7 @@ a {
 			<h2>You deserve to know what you pay for</h2>
 			<p>Stop being sold lies by Agents and Landlords. Ensure you are not paying for what you will regret
 				<br>Search that apartment before paying. Shine your eyes.</p>
-			<a href="#explore-features" class="site-btn">EXPLORE</a>
+			<a href="#explore-features" class="site-btn">SEARCH HOUSE</a>
 		</div>
 	</section>
 	<!-- Hero section end -->
@@ -132,7 +132,7 @@ a {
 						</div>
 						<div class="feature-text">
 							<div class="text-center feature-title">
-									<h5>{{ review.street_name}}</h5>
+									<h5>{{ review.street_name| slice:":40"}}</h5>
 								<p><i class="fa fa-map-marker"></i> {{ review.state}}, {{ review.location }}</p>
 							</div>
 							<div class="room-info-warp">
