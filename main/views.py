@@ -176,41 +176,32 @@ def writeReview(request):
         default_url = 'https://res.cloudinary.com/dkozdkklg/image/upload/v1575174676/tom-thain-_0URG2ZegMc-unsplash_dmgaje.jpg'
         if form.is_valid():
             review = form.save(commit=False)
-            try:
-                if request.FILES.get('image1'):
-                    image1 = cloudinary.uploader.upload(request.FILES.get('image1'))
-                    img1 = image1['url']
-                else:
-                    img1 = default_url
-                if request.FILES.get('image2'):
-                    image2 = cloudinary.uploader.upload(request.FILES.get('image2'))
-                    img2 = image2['url']
-                else:
-                    img2 = default_url
-                if request.FILES.get('image3'):
-                    image3 = cloudinary.uploader.upload(request.FILES.get('image3'))
-                    img3 = image3['url']
-                else:
-                    img3 = default_url
-                if request.FILES.get('image4'):
-                    image4 = cloudinary.uploader.upload(request.FILES.get('image4'))
-                    img4 = image4['url']
-                else:
-                    img4 = default_url
-                form.owner = request.user
-                new_list = [img1, img2, img3, img4]
-                review.images.extend(new_list)
-                #review.owner = request.user
-                form.save()
-                return redirect('/review/')
-            except Exception as e:
-                message = str(e) 
-                print(message)
-                return render(request, 'main/new-review.html', {'form':form})
-        else:
-            message = form.errors # add this message as a splash screen
-            news = NewsletterForm()
-            return render(request, 'main/new-review.html', {'form': form, 'news':news})
+            if request.FILES.get('image1'):
+                image1 = cloudinary.uploader.upload(request.FILES.get('image1'))
+                img1 = image1['url']
+            else:
+                img1 = default_url
+            if request.FILES.get('image2'):
+                image2 = cloudinary.uploader.upload(request.FILES.get('image2'))
+                img2 = image2['url']
+            else:
+                img2 = default_url
+            if request.FILES.get('image3'):
+                image3 = cloudinary.uploader.upload(request.FILES.get('image3'))
+                img3 = image3['url']
+            else:
+                img3 = default_url
+            if request.FILES.get('image4'):
+                image4 = cloudinary.uploader.upload(request.FILES.get('image4'))
+                img4 = image4['url']
+            else:
+                img4 = default_url
+            new_list = [img1, img2, img3, img4]
+            review.images.extend(new_list)
+            review.owner = request.user
+            form.save()
+
+        return redirect('/review/')
 
     else:
         form = ReviewForm()
