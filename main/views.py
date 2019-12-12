@@ -200,7 +200,6 @@ def writeReview(request):
             review.images.extend(new_list)
             review.owner = request.user
             form.save()
-
         return redirect('/review/')
 
     else:
