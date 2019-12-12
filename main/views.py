@@ -201,8 +201,6 @@ def writeReview(request):
             review.owner = request.user
             form.save()
         return redirect('/review/')
-    
-    
     else:
         form = ReviewForm()
         news = NewsletterForm()

@@ -27,11 +27,14 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = '8vc0%pfbpqt+l*8d1@f*&9^t2x&kzplw+gm9-fperffuu^lm$x'
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['thesharptenant.com', 'www.thesharptenant.com', '178.79.157.173']
 SECURE_SSL_REDIRECT = True
-
+CONN_MAX_AGE = None
+ADMINS =[('Nonso', 'nonso@systemshift.io'), ('Chinonso', 'nonsookoroafor@gmail.com')]
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
 # Application definition
 
 INSTALLED_APPS = [
