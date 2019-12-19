@@ -133,41 +133,39 @@ def searchReview(request):
         location = request.GET['location']
         address = request.GET['address']
         state = request.GET['state']
-
-        try:
-            if (location != ''):
-
-                review = Review.objects.filter(Q(location__icontains=location) |
-                                                     Q(street_name__icontains=address) |
-                                                     Q(state__icontains=state)).order_by('-date_created')
-                if not review:
-                    review = Review.objects.filter(location__icontains=location).order_by('-date_created')
-                else:
-                    review = review
-                context = {'review':review}
-                page = request.GET.get('page', 1)
-                paginator = Paginator(review, 9)
-                try:
-                    review = paginator.page(page)
-                except PageNotAnInteger:
-                    review = paginator.page(1)
-                except EmptyPage:
-                    review = paginator.page(paginator.num_pages)
+        if (address != ''):
+            review_recent = Review.objects.filter(street_name__icontains=address).order_by('-date_created')
+            if not review_recent:
+                review_recent = Review.objects.filter(Q(location__icontains=location) |
+                                                      Q(street_name__icontains=address) |
+                                                      Q(state__icontains=state)).order_by('-date_created')
             else:
-                review = Review.objects.filter(state__icontains=state, location__icontains=location).order_by('-date_created')
-                news = NewsletterForm()
-                context = {'review':review, 'news': news}
-                page = request.GET.get('page', 1)
-                paginator = Paginator(review, 16)
-                try:
-                    review = paginator.page(page)
-                except PageNotAnInteger:
-                    review = paginator.page(1)
-                except EmptyPage:
-                    review = paginator.page(paginator.num_pages)
-            return render(request, 'main/review-all.html', context)
-        except Review.DoesNotExist:
-            return render(request, 'main/error.html') 
+                review = review_recent
+            context = {'review':review}
+            page = request.GET.get('page', 1)
+            paginator = Paginator(review, 9)
+            try:
+                review = paginator.page(page)
+            except PageNotAnInteger:
+                review = paginator.page(1)
+            except EmptyPage:
+                review = paginator.page(paginator.num_pages)
+        else:
+            review = Review.objects.filter(Q(location__icontains=location) |
+                                            Q(street_name__icontains=address) |
+                                            Q(state__icontains=state)).order_by('-date_created')
+            news = NewsletterForm()
+            context = {'review':review, 'news': news}
+            page = request.GET.get('page', 1)
+            paginator = Paginator(review, 16)
+            try:
+                review = paginator.page(page)
+            except PageNotAnInteger:
+                review = paginator.page(1)
+            except EmptyPage:
+                review = paginator.page(paginator.num_pages)
+        return render(request, 'main/review-all.html', context)
+
         
 @login_required(login_url='/signin/')
 def writeReview(request):
