@@ -133,6 +133,7 @@ def searchReview(request):
         location = request.GET['location']
         address = request.GET['address']
         state = request.GET['state']
+        review = []
         if (address != ''):
             review_recent = Review.objects.filter(street_name__icontains=address).order_by('-date_created')
             if not review_recent:
